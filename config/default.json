@@ -1,4 +1,5 @@
 {
   "jwtPrivateKey" : "",
-  "db": "mongodb://localhost:27017/financial-picture"
+  "db": "mongodb://localhost:27017/financial-picture",
+  "client" : "http://localhost:8001"
 }
