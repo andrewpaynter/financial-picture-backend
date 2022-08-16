@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const config = require('config')
 
 module.exports = function (req, res, next) {
-  const token = req.cookies.auth_token
+  const token = req.signedCookies.auth_token
   if (!token) return res.status(401).send('Access denied. No token provided.')
 
   try {

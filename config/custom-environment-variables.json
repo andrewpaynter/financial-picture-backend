@@ -1,3 +1,4 @@
 {
-  "jwtPrivateKey" : "fp_jwtPrivateKey"
+  "jwtPrivateKey" : "fp_jwtPrivateKey",
+  "cookiePrivateKey" : "fp_cookiePrivateKey"
 }

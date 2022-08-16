@@ -12,10 +12,10 @@ router.get('/me', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const { error } = validateUser(req.body)
-  if (error) return res.status(400).send(error.details[0].message)
+  if (error) return res.status(400).send({ error: error.details[0].message })
 
   let user = await User.findOne({ email: req.body.email })
-  if (user) return res.status(400).send('User already registered')
+  if (user) return res.status(400).send({ error: 'User already registered' })
 
   user = new User({
     name: req.body.name,
@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
 
   const token = user.generateAuthToken()
 
-  res.cookie('auth_token', token).send({
+  res.cookie('auth_token', token, { signed: true }).send({
     name: user.name,
     email: user.email,
     userData: user.userData,

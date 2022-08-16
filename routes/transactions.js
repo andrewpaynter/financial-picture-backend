@@ -14,13 +14,13 @@ router.get('/:id', auth, validateID, async (req, res) => {
   if (!transaction)
     return res
       .status(404)
-      .send('The transaction with the given ID was not found')
+      .send({ error: 'The transaction with the given ID was not found' })
   res.send(transaction)
 })
 
 router.post('/', auth, async (req, res) => {
   const { error } = validateTransaction(req.body)
-  if (error) return res.status(400).send(error.details[0].message)
+  if (error) return res.status(400).send({ error: error.details[0].message })
 
   const transaction = new Transaction({
     title: req.body.title,
@@ -36,7 +36,7 @@ router.post('/', auth, async (req, res) => {
 
 router.put('/:id', auth, validateID, async (req, res) => {
   const { error } = validateTransaction(req.body)
-  if (error) return res.status(400).send(result.error.details[0].message)
+  if (error) return res.status(400).send({ error: error.details[0].message })
 
   const transaction = await Transaction.findByIdAndUpdate(
     req.params.id,
@@ -54,7 +54,7 @@ router.put('/:id', auth, validateID, async (req, res) => {
   if (!transaction)
     return res
       .status(404)
-      .send('The transaction with the given ID was not found')
+      .send({ error: 'The transaction with the given ID was not found' })
 
   res.send(transaction)
 })
@@ -64,7 +64,7 @@ router.delete('/:id', auth, validateID, async (req, res) => {
   if (!transaction)
     return res
       .status(404)
-      .send('The transaction with the given ID was not found')
+      .send({ error: 'The transaction with the given ID was not found' })
 
   res.send(transaction)
 })
