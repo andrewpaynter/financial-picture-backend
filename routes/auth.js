@@ -38,7 +38,13 @@ router.delete('/', async (req, res) => {
 })
 
 router.get('/', auth, async (req, res) => {
-  return res.status(200).send({ message: 'Valid auth' })
+  const user = await User.findById(req.user._id).select('-password')
+  return res.status(200).send({
+    message: 'Valid auth',
+    name: user.name,
+    email: user.email,
+    userData: user.userData,
+  })
 })
 
 const validate = (req) => {
