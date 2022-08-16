@@ -4,16 +4,21 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const Joi = require('joi')
+const auth = require('../middleware/auth')
 
 router.post('/', async (req, res) => {
   const { error } = validate(req)
-  if (error) return res.status(400).send({ message: error.details[0].message })
+  if (error) {
+    return res.status(400).send({ message: error.details[0].message })
+  }
 
   let user = await User.findOne({ email: req.body.email })
-  if (!user) return res.status(400).send('Invalid email or password')
+  if (!user)
+    return res.status(400).send({ message: 'Invalid email or password' })
 
   const validPassword = await bcrypt.compare(req.body.password, user.password)
-  if (!validPassword) return res.status(400).send('Invalid email or password')
+  if (!validPassword)
+    return res.status(400).send({ message: 'Invalid email or password' })
 
   const token = user.generateAuthToken()
 
@@ -21,13 +26,36 @@ router.post('/', async (req, res) => {
     name: user.name,
     email: user.email,
     userData: user.userData,
+    message: 'Logged in successfully!',
   })
+})
+
+router.delete('/', async (req, res) => {
+  res
+    .clearCookie('auth_token')
+    .status(200)
+    .send({ message: 'Logged out successfully!' })
+})
+
+router.get('/', auth, async (req, res) => {
+  return res.status(200).send({ message: 'Valid auth' })
 })
 
 const validate = (req) => {
   const schema = Joi.object({
-    email: Joi.string().min(5).max(255).required().email(),
-    password: Joi.string().min(7).max(255).required(),
+    email: Joi.string().min(5).max(255).required().email().messages({
+      'any.required': 'Email required',
+      'string.empty': 'Email required',
+      'string.min': `Email should have at least 5 characters`,
+      'string.max': `Email should have at most 255 characters`,
+      'string.email': 'Email invalid',
+    }),
+    password: Joi.string().min(7).max(255).required().messages({
+      'any.required': 'Password required',
+      'string.empty': 'Password required',
+      'string.min': `Invalid email or password`,
+      'string.max': `Invalid email or password`,
+    }),
   })
   return schema.validate(req.body)
 }
