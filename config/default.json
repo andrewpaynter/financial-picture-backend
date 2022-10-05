@@ -1,6 +1,6 @@
 {
   "jwtPrivateKey" : "",
   "cookiePrivateKey" : "",
-  "db": "mongodb://localhost:27017/financial-picture",
+  "db": "",
   "client" : "http://localhost:8001"
 }
