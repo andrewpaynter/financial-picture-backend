@@ -7,7 +7,6 @@ const transactions = require('../routes/transactions')
 const error = require('../middleware/error')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
-const config = require('config')
 
 module.exports = function (app) {
   app.use(express.json())
@@ -22,7 +21,7 @@ module.exports = function (app) {
     })
   )
   app.use(
-    cookieParser(config.get('cookiePrivateKey'), {
+    cookieParser(process.env.fp_cookiePrivateKey, {
       httpOnly: true,
       expires: addHours(new Date(), 2),
     })
