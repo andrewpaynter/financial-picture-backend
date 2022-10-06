@@ -7,4 +7,7 @@ module.exports = function () {
   if (!config.get('cookiePrivateKey')) {
     throw new Error('FATAL ERROR: cookiePrivateKey is not defined')
   }
+  if (!config.get('db')) {
+    throw new Error('FATAL ERROR: db is not defined')
+  }
 }
