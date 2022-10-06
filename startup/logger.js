@@ -15,17 +15,6 @@ const logger = winston.createLogger({
       level: 'error',
       handleExceptions: true,
     }),
-    new winston.transports.MongoDB({
-      db: 'mongodb://localhost:27017/financial-picture',
-      level: 'error',
-      handleExceptions: true,
-    }),
-  ],
-  rejectionHandlers: [
-    new winston.transports.MongoDB({
-      db: 'mongodb://localhost:27017/financial-picture',
-      level: 'error',
-    }),
   ],
 })
 

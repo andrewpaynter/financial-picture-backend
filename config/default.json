@@ -2,5 +2,5 @@
   "jwtPrivateKey" : "",
   "cookiePrivateKey" : "",
   "db": "",
-  "client" : "http://localhost:8001"
+  "client" : "https://financial-picture.onrender.com"
 }

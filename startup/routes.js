@@ -11,7 +11,15 @@ const config = require('config')
 
 module.exports = function (app) {
   app.use(express.json())
-  app.use(cors({ origin: ['http://localhost:8001'], credentials: true }))
+  app.use(
+    cors({
+      origin: [
+        'https://financial-picture.onrender.com',
+        'http://financial-picture.onrender.com',
+      ],
+      credentials: true,
+    })
+  )
   app.use(
     cookieParser(config.get('cookiePrivateKey'), {
       httpOnly: true,
