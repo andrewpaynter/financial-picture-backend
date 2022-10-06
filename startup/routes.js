@@ -21,7 +21,7 @@ module.exports = function (app) {
     })
   )
   app.use(
-    cookieParser(process.env.fp_cookiePrivateKey, {
+    cookieParser(process.env.COOKIE_PRIVATE_KEY, {
       httpOnly: true,
       expires: addHours(new Date(), 2),
     })
