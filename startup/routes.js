@@ -11,7 +11,12 @@ module.exports = function (app) {
   app.use(express.json())
   app.use(
     cors({
-      origin: [process.env.CLIENT, process.env.SECURE_CLIENT],
+      origin: [
+        process.env.CLIENT,
+        process.env.SECURE_CLIENT,
+        'https://financial-picture.onrender.com/',
+        'http://financial-picture.onrender.com/',
+      ],
       credentials: true,
     })
   )
