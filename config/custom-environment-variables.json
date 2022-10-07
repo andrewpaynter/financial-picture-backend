@@ -1,5 +1,6 @@
 {
-  "jwtPrivateKey" : "fp_jwtPrivateKey",
-  "cookiePrivateKey" : "fp_cookiePrivateKey",
-  "db": "fp_db"
+  "jwtPrivateKey" : "JWT_PRIVATE_KEY",
+  "cookiePrivateKey" : "COOKIE_PRIVATE_KEY",
+  "db": "DB",
+  "client" : "CLIENT"
 }

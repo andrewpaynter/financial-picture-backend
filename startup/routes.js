@@ -1,5 +1,6 @@
 const express = require('express')
 const addHours = require('date-fns/addHours')
+const config = require('config')
 const users = require('../routes/users')
 const auth = require('../routes/auth')
 const transactions = require('../routes/transactions')
@@ -11,15 +12,12 @@ module.exports = function (app) {
   app.use(express.json())
   app.use(
     cors({
-      origin: [
-        'https://financial-picture.onrender.com',
-        'http://financial-picture.onrender.com',
-      ],
+      origin: config.get('client'),
       credentials: true,
     })
   )
   app.use(
-    cookieParser(process.env.COOKIE_PRIVATE_KEY, {
+    cookieParser(config.get('cookiePrivateKey'), {
       httpOnly: true,
       expires: addHours(new Date(), 2),
     })
