@@ -2,5 +2,6 @@
   "jwtPrivateKey" : "JWT_PRIVATE_KEY",
   "cookiePrivateKey" : "COOKIE_PRIVATE_KEY",
   "db": "DB",
-  "client" : "CLIENT"
+  "client" : "CLIENT",
+  "secureClient" : "SECURE_CLIENT"
 }

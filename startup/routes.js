@@ -12,7 +12,7 @@ module.exports = function (app) {
   app.use(express.json())
   app.use(
     cors({
-      origin: config.get('client'),
+      origin: [config.get('client'), config.get('secureClient')],
       credentials: true,
     })
   )

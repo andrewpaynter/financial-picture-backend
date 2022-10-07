@@ -2,5 +2,6 @@
   "jwtPrivateKey" : "test123",
   "cookiePrivateKey" : "test123",
   "db": "mongodb://localhost:27017",
-  "client" : ["http://localhost:8001", "https://localhost:8001"]
+  "client" : "http://localhost:8001",
+  "secureClient" : "https://localhost:8001"
 }
