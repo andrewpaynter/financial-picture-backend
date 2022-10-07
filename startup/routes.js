@@ -12,10 +12,7 @@ module.exports = function (app) {
   app.use(express.json())
   app.use(
     cors({
-      origin: [
-        'https://financial-picture.onrender.com',
-        'http://financial-picture.onrender.com',
-      ],
+      origin: [config.get('client'), config.get('secureClient')],
       credentials: true,
     })
   )
