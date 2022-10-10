@@ -18,7 +18,6 @@ const logger = winston.createLogger({
     new winston.transports.MongoDB({
       db: process.env.DB,
       filename: 'logfile.log',
-      level: 'error',
       handleExceptions: true,
     }),
   ],
