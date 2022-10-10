@@ -5,6 +5,7 @@ const transactions = require('../routes/transactions')
 const error = require('../middleware/error')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
+const addHours = require('date-fns/addHours')
 
 module.exports = function (app) {
   app.use(express.json())
@@ -21,7 +22,15 @@ module.exports = function (app) {
       credentials: true,
     })
   )
-  app.use(cookieParser(process.env.COOKIE_PRIVATE_KEY))
+  app.use(
+    cookieParser(process.env.COOKIE_PRIVATE_KEY, {
+      httpOnly: true,
+      expires: addHours(new Date(), 2),
+      signed: true,
+      sameSite: 'none',
+      secure: true,
+    })
+  )
   app.use('/api/transactions', transactions)
   app.use('/api/users', users)
   app.use('/api/auth', auth)
