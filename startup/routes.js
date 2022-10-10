@@ -16,6 +16,8 @@ module.exports = function (app) {
         process.env.SECURE_CLIENT,
         'https://financial-picture.onrender.com/',
         'http://financial-picture.onrender.com/',
+        'https://financial-picture.onrender.com',
+        'http://financial-picture.onrender.com',
       ],
       credentials: true,
     })
