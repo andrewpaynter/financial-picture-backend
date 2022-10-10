@@ -16,7 +16,7 @@ const logger = winston.createLogger({
       handleExceptions: true,
     }),
     new winston.transports.MongoDB({
-      db: process.env.DB,
+      db: process.env.DB_URI,
       filename: 'logfile.log',
       handleExceptions: true,
     }),
