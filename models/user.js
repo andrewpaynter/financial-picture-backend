@@ -49,8 +49,15 @@ const userSchema = new mongoose.Schema({
   userData: {
     type: userData,
     default: {
-      allTags: [],
-      allCategories: [],
+      allTags: ['Business', 'Pets', 'Misc'],
+      allCategories: [
+        'Rent',
+        'Grocery',
+        'Gas',
+        'Other',
+        'Food and Drink',
+        'Shopping',
+      ],
     },
   },
 })
