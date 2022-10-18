@@ -19,4 +19,4 @@ Database Design
 Fluid Front-end Design
 
 Try the demo! https://financial-picture.onrender.com (username: user@test.com, password: test123)
-See the backend: https://github.com/andrewpaynter/financial-picture 
+See the front end: https://github.com/andrewpaynter/financial-picture 
